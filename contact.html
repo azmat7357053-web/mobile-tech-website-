@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | MobiTech</title>
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>body { font-family: 'Inter', sans-serif; }</style>
+</head>
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+
+    <!-- Announcement Bar -->
+    <div class="bg-gray-900 text-white text-xs sm:text-sm text-center py-2 px-4">
+        <i class="fa-solid fa-truck-fast mr-2 text-blue-400"></i> Free Shipping on all orders over $500!
+        <span class="hidden sm:inline">| Use code <strong class="text-blue-400">MOBI10</strong> for 10% off.</span>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center">
+                    <a href="index.html" class="text-2xl font-bold text-blue-600 flex items-center">
+                        <i class="fa-solid fa-mobile-screen-button mr-2"></i>MobiTech
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-blue-600 transition">Home</a>
+                    <a href="about.html" class="text-gray-600 hover:text-blue-600 transition">About</a>
+                    <a href="contact.html" class="text-blue-600 font-semibold border-b-2 border-blue-600 pb-1">Contact</a>
+                    <a href="signin.html" class="text-gray-600 hover:text-blue-600 transition">Sign In</a>
+                    <a href="signup.html" class="bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition shadow-md">Sign Up</a>
+                    <a href="#" class="text-gray-600 hover:text-blue-600 relative">
+                        <i class="fa-solid fa-cart-shopping text-xl"></i>
+                        <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
+                    </a>
+                </div>
+                <div class="flex items-center md:hidden space-x-4">
+                    <a href="#" class="text-gray-600 relative">
+                        <i class="fa-solid fa-cart-shopping text-xl"></i>
+                        <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
+                    </a>
+                    <button id="mobile-menu-btn" class="text-gray-600 focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <div class="px-4 pt-2 pb-4 space-y-2">
+                <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-gray-50">Home</a>
+                <a href="about.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-gray-50">About</a>
+                <a href="contact.html" class="block px-3 py-2 rounded-md text-base font-medium text-blue-600 bg-blue-50">Contact</a>
+                <a href="signin.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-gray-50">Sign In</a>
+                <a href="signup.html" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-blue-600 hover:bg-blue-700 text-center mt-2">Sign Up</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN -->
+    <main class="flex-grow">
+
+        <!-- Page Header -->
+        <section class="bg-gradient-to-r from-blue-700 to-indigo-700 text-white py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
+                <p class="text-lg text-blue-100 max-w-2xl mx-auto">Have a question about a phone or your order? Send us a message and we'll get back within 24 hours.</p>
+            </div>
+        </section>
+
+        <!-- Contact Info Cards -->
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-gray-50 p-8 rounded-2xl text-center border border-gray-100 hover:shadow-lg transition">
+                        <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Visit Our Store</h3>
+                        <p class="text-gray-600">123 Mobile Street<br>Tech City, TC 10001</p>
+                    </div>
+                    <div class="bg-gray-50 p-8 rounded-2xl text-center border border-gray-100 hover:shadow-lg transition">
+                        <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Email Us</h3>
+                        <p class="text-gray-600">support@mobitech.com<br>azmat@mobitech.com</p>
+                    </div>
+                    <div class="bg-gray-50 p-8 rounded-2xl text-center border border-gray-100 hover:shadow-lg transition">
+                        <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Call Us</h3>
+                        <p class="text-gray-600">+1 234 567 890<br>Mon-Sat, 9am-8pm</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form + Sidebar -->
+        <section class="py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+                    <!-- Form -->
+                    <div class="lg:col-span-2 bg-white p-8 md:p-10 rounded-2xl shadow-lg border border-gray-100">
+                        <h2 class="text-3xl font-bold mb-2">Send Us a Message</h2>
+                        <p class="text-gray-500 mb-8">Fill out the form and we'll get back to you shortly.</p>
+
+                        <!-- FORMSPREE FORM - REPLACE YOUR_FORMSPREE_ID -->
+                        <form action="https://formspree.io/f/xaengvpj" method="POST" class="space-y-5">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                                    <input type="text" id="name" name="name" required placeholder="John Doe" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition bg-gray-50">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                                    <input type="email" id="email" name="email" required placeholder="john@example.com" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition bg-gray-50">
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div>
+                                    <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                                    <input type="tel" id="phone" name="phone" placeholder="+1 234 567 890" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition bg-gray-50">
+                                </div>
+                                <div>
+                                    <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
+                                    <select id="subject" name="subject" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition bg-gray-50">
+                                        <option value="">Select a topic</option>
+                                        <option>Product Inquiry</option>
+                                        <option>Order Support</option>
+                                        <option>Warranty Claim</option>
+                                        <option>Bulk Purchase</option>
+                                        <option>Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                                <textarea id="message" name="message" rows="5" required placeholder="Write your message here..." class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition bg-gray-50 resize-none"></textarea>
+                            </div>
+                            <button type="submit" class="bg-blue-600 text-white px-10 py-3 rounded-full font-semibold hover:bg-blue-700 transition shadow-md w-full md:w-auto">
+                                Send Message <i class="fa-solid fa-paper-plane ml-2"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Sidebar -->
+                    <div class="space-y-6">
+                        <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100">
+                            <h3 class="text-lg font-bold mb-4 flex items-center">
+                                <i class="fa-solid fa-clock text-blue-600 mr-2"></i> Business Hours
+                            </h3>
+                            <ul class="space-y-3 text-sm">
+                                <li class="flex justify-between"><span class="text-gray-600">Monday - Friday</span><span class="font-semibold">9am - 8pm</span></li>
+                                <li class="flex justify-between"><span class="text-gray-600">Saturday</span><span class="font-semibold">10am - 6pm</span></li>
+                                <li class="flex justify-between"><span class="text-gray-600">Sunday</span><span class="font-semibold text-red-500">Closed</span></li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-gray-100">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.2219901290355!2d-74.00369368400567!3d40.71312937933022!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a22a3bda30d%3A0xb89d1fe6bc499443!2sDowntown%20Conference%20Center!5e0!3m2!1sen!2sus!4v1600000000000!5m2!1sen!2sus" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" class="w-full"></iframe>
+                        </div>
+
+                        <div class="bg-gradient-to-r from-blue-600 to-indigo-600 p-6 rounded-2xl text-white shadow-md">
+                            <h3 class="font-bold mb-2"><i class="fa-solid fa-headset mr-2"></i> Need Instant Help?</h3>
+                            <p class="text-sm text-blue-100 mb-4">Chat with us on WhatsApp for quick responses.</p>
+                            <a href="#" class="bg-white text-blue-700 px-5 py-2 rounded-full font-semibold text-sm hover:bg-gray-100 transition inline-block">
+                                <i class="fa-brands fa-whatsapp mr-1"></i> Chat Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Accordion -->
+        <section class="py-16 bg-white">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-4">Frequently Asked Questions</h2>
+                    <p class="text-gray-600">Quick answers to common questions.</p>
+                </div>
+                <div class="space-y-4">
+                    <details class="bg-gray-50 rounded-xl p-5 border border-gray-100 hover:shadow-md transition group">
+                        <summary class="font-semibold cursor-pointer flex justify-between items-center">
+                            Are your phones brand new and original?
+                            <i class="fa-solid fa-chevron-down text-blue-600 group-open:rotate-180 transition"></i>
+                        </summary>
+                        <p class="text-gray-600 mt-3 text-sm">Yes! Every phone we sell is 100% brand new, sealed, and comes with an official manufacturer warranty.</p>
+                    </details>
+                    <details class="bg-gray-50 rounded-xl p-5 border border-gray-100 hover:shadow-md transition group">
+                        <summary class="font-semibold cursor-pointer flex justify-between items-center">
+                            How long does delivery take?
+                            <i class="fa-solid fa-chevron-down text-blue-600 group-open:rotate-180 transition"></i>
+                        </summary>
+                        <p class="text-gray-600 mt-3 text-sm">Standard delivery takes 2-4 business days. Express delivery is available for 24-hour shipment.</p>
+                    </details>
+                    <details class="bg-gray-50 rounded-xl p-5 border border-gray-100 hover:shadow-md transition group">
+                        <summary class="font-semibold cursor-pointer flex justify-between items-center">
+                            Do you offer installment plans?
+                            <i class="fa-solid fa-chevron-down text-blue-600 group-open:rotate-180 transition"></i>
+                        </summary>
+                        <p class="text-gray-600 mt-3 text-sm">Yes, we offer flexible 3, 6, and 12-month installment plans on selected smartphones.</p>
+                    </details>
+                    <details class="bg-gray-50 rounded-xl p-5 border border-gray-100 hover:shadow-md transition group">
+                        <summary class="font-semibold cursor-pointer flex justify-between items-center">
+                            What is your return policy?
+                            <i class="fa-solid fa-chevron-down text-blue-600 group-open:rotate-180 transition"></i>
+                        </summary>
+                        <p class="text-gray-600 mt-3 text-sm">We offer a 30-day return policy on unopened items. For warranty claims, contact our support team.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+                <div>
+                    <a href="index.html" class="text-2xl font-bold text-blue-400 mb-4 block"><i class="fa-solid fa-mobile-screen-button mr-2"></i>MobiTech</a>
+                    <p class="text-gray-400 mb-4">Your trusted partner for the latest smartphones and accessories.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Shop</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="index.html#products" class="hover:text-blue-400 transition">Smartphones</a></li>
+                        <li><a href="#" class="hover:text-blue-400 transition">Accessories</a></li>
+                        <li><a href="#" class="hover:text-blue-400 transition">Deals</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="about.html" class="hover:text-blue-400 transition">About Us</a></li>
+                        <li><a href="contact.html" class="hover:text-blue-400 transition">Contact</a></li>
+                        <li><a href="#" class="hover:text-blue-400 transition">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-start"><i class="fa-solid fa-location-dot mt-1 mr-3 text-blue-400"></i> 123 Mobile Street, Tech City</li>
+                        <li class="flex items-start"><i class="fa-solid fa-envelope mt-1 mr-3 text-blue-400"></i> support@mobitech.com</li>
+                        <li class="flex items-start"><i class="fa-solid fa-phone mt-1 mr-3 text-blue-400"></i> +1 234 567 890</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm">
+                <p>&copy; 2026 MobiTech. All rights reserved. Founded by M. Azmat Abbas.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-blue-400 transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-blue-400 transition">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
