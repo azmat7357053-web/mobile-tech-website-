@@ -8,7 +8,65 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <style>body { font-family: 'Inter', sans-serif; }</style>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+
+        /* ===== SEMANTIC TAB STYLES (driven by ARIA state, not classes) ===== */
+        [role="tablist"] {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 3rem;
+        }
+
+        [role="tab"] {
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color .2s, color .2s, border-color .2s, box-shadow .2s;
+            border: 1px solid transparent;
+        }
+
+        [role="tab"][aria-selected="true"] {
+            background-color: #2563eb; /* blue-600 */
+            color: #ffffff;
+            border-color: #2563eb;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+
+        [role="tab"][aria-selected="false"] {
+            background-color: #ffffff;
+            color: #374151; /* gray-700 */
+            border-color: #e5e7eb; /* gray-200 */
+        }
+
+        [role="tab"][aria-selected="false"]:hover {
+            background-color: #f3f4f6; /* gray-100 */
+        }
+
+        [role="tab"]:focus-visible {
+            outline: 3px solid #93c5fd; /* blue-300 */
+            outline-offset: 2px;
+        }
+
+        /* Panels: hidden attribute hides from everyone (visual + AT) */
+        [role="tabpanel"][hidden] {
+            display: none;
+        }
+
+        /* Focusable panel for keyboard users */
+        [role="tabpanel"]:focus {
+            outline: none;
+        }
+        [role="tabpanel"]:focus-visible {
+            outline: 3px solid #93c5fd;
+            outline-offset: 4px;
+            border-radius: 1rem;
+        }
+    </style>
 </head>
 <body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
 
@@ -33,18 +91,18 @@
                     <a href="contact.html" class="text-gray-600 hover:text-blue-600 transition">Contact</a>
                     <a href="signin.html" class="text-gray-600 hover:text-blue-600 transition">Sign In</a>
                     <a href="signup.html" class="bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition shadow-md">Sign Up</a>
-                    <a href="#" class="text-gray-600 hover:text-blue-600 relative">
-                        <i class="fa-solid fa-cart-shopping text-xl"></i>
+                    <a href="#" class="text-gray-600 hover:text-blue-600 relative" aria-label="Cart, 3 items">
+                        <i class="fa-solid fa-cart-shopping text-xl" aria-hidden="true"></i>
                         <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
                     </a>
                 </div>
                 <div class="flex items-center md:hidden space-x-4">
-                    <a href="#" class="text-gray-600 relative">
-                        <i class="fa-solid fa-cart-shopping text-xl"></i>
+                    <a href="#" class="text-gray-600 relative" aria-label="Cart, 3 items">
+                        <i class="fa-solid fa-cart-shopping text-xl" aria-hidden="true"></i>
                         <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
                     </a>
-                    <button id="mobile-menu-btn" class="text-gray-600 focus:outline-none">
-                        <i class="fa-solid fa-bars text-2xl"></i>
+                    <button id="mobile-menu-btn" class="text-gray-600 focus:outline-none" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-menu">
+                        <i class="fa-solid fa-bars text-2xl" aria-hidden="true"></i>
                     </button>
                 </div>
             </div>
@@ -72,12 +130,12 @@
                         <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6">Get the Latest <span class="text-yellow-300">Smartphones</span> at Best Prices</h1>
                         <p class="text-lg md:text-xl text-blue-100 max-w-xl mb-8">Explore our premium collection of flagship phones from Apple, Samsung, Google, and more.</p>
                         <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center md:justify-start">
-                            <a href="#products" class="bg-white text-blue-700 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition shadow-lg text-center"><i class="fa-solid fa-bag-shopping mr-2"></i>Shop Now</a>
+                            <a href="#products" class="bg-white text-blue-700 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition shadow-lg text-center"><i class="fa-solid fa-bag-shopping mr-2" aria-hidden="true"></i>Shop Now</a>
                             <a href="about.html" class="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-blue-700 transition text-center">Learn More</a>
                         </div>
                     </div>
                     <div class="flex justify-center md:justify-end">
-                        <img src="https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=600&q=80" alt="Latest Smartphone" class="rounded-3xl shadow-2xl w-full max-w-sm md:max-w-md object-cover transform rotate-3 hover:rotate-0 transition duration-500">
+                        <img src="https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=600&q=80" alt="Latest smartphone on display" class="rounded-3xl shadow-2xl w-full max-w-sm md:max-w-md object-cover transform rotate-3 hover:rotate-0 transition duration-500">
                     </div>
                 </div>
             </div>
@@ -88,22 +146,22 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
                     <div class="flex flex-col items-center">
-                        <i class="fa-solid fa-truck-fast text-3xl text-blue-600 mb-2"></i>
+                        <i class="fa-solid fa-truck-fast text-3xl text-blue-600 mb-2" aria-hidden="true"></i>
                         <h4 class="font-semibold text-sm md:text-base">Free Shipping</h4>
                         <p class="text-xs text-gray-500">On orders over $500</p>
                     </div>
                     <div class="flex flex-col items-center">
-                        <i class="fa-solid fa-shield-halved text-3xl text-blue-600 mb-2"></i>
+                        <i class="fa-solid fa-shield-halved text-3xl text-blue-600 mb-2" aria-hidden="true"></i>
                         <h4 class="font-semibold text-sm md:text-base">2 Year Warranty</h4>
                         <p class="text-xs text-gray-500">Official warranty</p>
                     </div>
                     <div class="flex flex-col items-center">
-                        <i class="fa-solid fa-rotate-left text-3xl text-blue-600 mb-2"></i>
+                        <i class="fa-solid fa-rotate-left text-3xl text-blue-600 mb-2" aria-hidden="true"></i>
                         <h4 class="font-semibold text-sm md:text-base">30-Day Returns</h4>
                         <p class="text-xs text-gray-500">No questions asked</p>
                     </div>
                     <div class="flex flex-col items-center">
-                        <i class="fa-solid fa-headset text-3xl text-blue-600 mb-2"></i>
+                        <i class="fa-solid fa-headset text-3xl text-blue-600 mb-2" aria-hidden="true"></i>
                         <h4 class="font-semibold text-sm md:text-base">24/7 Support</h4>
                         <p class="text-xs text-gray-500">Always here to help</p>
                     </div>
@@ -111,220 +169,244 @@
             </div>
         </section>
 
-        <!-- PRODUCTS -->
+        <!-- PRODUCTS (SEMANTIC TABS) -->
         <section id="products" class="py-20 bg-gray-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Featured Smartphones</h2>
                     <p class="text-gray-600 max-w-2xl mx-auto">Handpicked top-rated devices with the best performance, cameras, and battery life.</p>
                 </div>
-                <div class="flex flex-wrap justify-center gap-3 mb-12">
-                    <button class="bg-blue-600 text-white px-6 py-2 rounded-full font-medium text-sm shadow-md">All</button>
-                    <button class="bg-white text-gray-700 px-6 py-2 rounded-full font-medium text-sm hover:bg-gray-100 border border-gray-200">Apple</button>
-                    <button class="bg-white text-gray-700 px-6 py-2 rounded-full font-medium text-sm hover:bg-gray-100 border border-gray-200">Samsung</button>
-                    <button class="bg-white text-gray-700 px-6 py-2 rounded-full font-medium text-sm hover:bg-gray-100 border border-gray-200">Google</button>
-                    <button class="bg-white text-gray-700 px-6 py-2 rounded-full font-medium text-sm hover:bg-gray-100 border border-gray-200">OnePlus</button>
+
+                <!-- 1. TAB LIST -->
+                <div role="tablist" aria-label="Filter featured smartphones by brand">
+                    <button role="tab" id="tab-all"
+                            aria-controls="panel-all"
+                            aria-selected="true"
+                            tabindex="0">All</button>
+                    <button role="tab" id="tab-apple"
+                            aria-controls="panel-apple"
+                            aria-selected="false"
+                            tabindex="-1">Apple</button>
+                    <button role="tab" id="tab-samsung"
+                            aria-controls="panel-samsung"
+                            aria-selected="false"
+                            tabindex="-1">Samsung</button>
+                    <button role="tab" id="tab-google"
+                            aria-controls="panel-google"
+                            aria-selected="false"
+                            tabindex="-1">Google</button>
+                    <button role="tab" id="tab-oneplus"
+                            aria-controls="panel-oneplus"
+                            aria-selected="false"
+                            tabindex="-1">OnePlus</button>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- Product 1 -->
-                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition duration-300 border border-gray-100 group">
-                        <div class="relative overflow-hidden bg-gray-100">
-                            <span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10">-15%</span>
-                            <button class="absolute top-3 right-3 bg-white text-gray-600 hover:text-red-500 w-9 h-9 rounded-full flex items-center justify-center shadow-md z-10 transition"><i class="fa-regular fa-heart"></i></button>
-                            <img src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=500&q=80" alt="iPhone 15 Pro Max" class="w-full h-56 object-cover group-hover:scale-110 transition duration-500">
-                        </div>
-                        <div class="p-5">
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider">Apple</span>
-                                <div class="flex text-yellow-400 text-xs">
-                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
-                                    <span class="text-gray-400 ml-1">(4.5)</span>
+                <!-- 2. TAB PANEL: ALL -->
+                <div role="tabpanel" id="panel-all" aria-labelledby="tab-all" tabindex="0">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                        <!-- Product 1: iPhone -->
+                        <article class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition duration-300 border border-gray-100 group">
+                            <div class="relative overflow-hidden bg-gray-100">
+                                <span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10">-15%</span>
+                                <button class="absolute top-3 right-3 bg-white text-gray-600 hover:text-red-500 w-9 h-9 rounded-full flex items-center justify-center shadow-md z-10 transition" aria-label="Add iPhone 15 Pro Max to wishlist"><i class="fa-regular fa-heart" aria-hidden="true"></i></button>
+                                <img src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=500&q=80" alt="iPhone 15 Pro Max in titanium finish" class="w-full h-56 object-cover group-hover:scale-110 transition duration-500">
+                            </div>
+                            <div class="p-5">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider">Apple</span>
+                                    <div class="flex text-yellow-400 text-xs" aria-label="Rated 4.5 out of 5">
+                                        <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star-half-stroke" aria-hidden="true"></i>
+                                        <span class="text-gray-400 ml-1">(4.5)</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <h3 class="font-bold text-lg mb-1">iPhone 15 Pro Max</h3>
-                            <p class="text-gray-500 text-sm mb-3">A17 Pro chip, 256GB, Titanium</p>
-                            <div class="flex items-center justify-between mb-4">
-                                <div><span class="text-2xl font-bold text-gray-900">$1,099</span><span class="text-sm text-gray-400 line-through ml-2">$1,299</span></div>
-                            </div>
-                            <button class="w-full bg-blue-600 text-white py-2.5 rounded-lg font-semibold hover:bg-blue-700 transition flex items-center justify-center"><i class="fa-solid fa-cart-plus mr-2"></i>Add to Cart</button>
-                        </div>
-                    </div>
-
-                    <!-- Product 2 -->
-                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition duration-300 border border-gray-100 group">
-                        <div class="relative overflow-hidden bg-gray-100">
-                            <span class="absolute top-3 left-3 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10">New</span>
-                            <button class="absolute top-3 right-3 bg-white text-gray-600 hover:text-red-500 w-9 h-9 rounded-full flex items-center justify-center shadow-md z-10 transition"><i class="fa-regular fa-heart"></i></button>
-                            <img src="https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=500&q=80" alt="Samsung Galaxy S24 Ultra" class="w-full h-56 object-cover group-hover:scale-110 transition duration-500">
-                        </div>
-                        <div class="p-5">
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider">Samsung</span>
-                                <div class="flex text-yellow-400 text-xs">
-                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                                    <span class="text-gray-400 ml-1">(5.0)</span>
+                                <h3 class="font-bold text-lg mb-1">iPhone 15 Pro Max</h3>
+                                <p class="text-gray-500 text-sm mb-3">A17 Pro chip, 256GB, Titanium</p>
+                                <div class="flex items-center justify-between mb-4">
+                                    <div><span class="text-2xl font-bold text-gray-900">$1,099</span><span class="text-sm text-gray-400 line-through ml-2">$1,299</span></div>
                                 </div>
+                                <button class="w-full bg-blue-600 text-white py-2.5 rounded-lg font-semibold hover:bg-blue-700 transition flex items-center justify-center"><i class="fa-solid fa-cart-plus mr-2" aria-hidden="true"></i>Add to Cart</button>
                             </div>
-                            <h3 class="font-bold text-lg mb-1">Galaxy S24 Ultra</h3>
-                            <p class="text-gray-500 text-sm mb-3">Snapdragon 8 Gen 3, 512GB</p>
-                            <div class="flex items-center justify-between mb-4">
-                                <div><span class="text-2xl font-bold text-gray-900">$1,199</span><span class="text-sm text-gray-400 line-through ml-2">$1,399</span></div>
-                            </div>
-                            <button class="w-full bg-blue-600 text-white py-2.5 rounded-lg font-semibold hover:bg-blue-700 transition flex items-center justify-center"><i class="fa-solid fa-cart-plus mr-2"></i>Add to Cart</button>
-                        </div>
-                    </div>
+                        </article>
 
-                    <!-- Product 3 -->
-                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition duration-300 border border-gray-100 group">
-                        <div class="relative overflow-hidden bg-gray-100">
-                            <span class="absolute top-3 left-3 bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10">-10%</span>
-                            <button class="absolute top-3 right-3 bg-white text-gray-600 hover:text-red-500 w-9 h-9 rounded-full flex items-center justify-center shadow-md z-10 transition"><i class="fa-regular fa-heart"></i></button>
-                            <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=500&q=80" alt="Google Pixel 8 Pro" class="w-full h-56 object-cover group-hover:scale-110 transition duration-500">
-                        </div>
-                        <div class="p-5">
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider">Google</span>
-                                <div class="flex text-yellow-400 text-xs">
-                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
-                                    <span class="text-gray-400 ml-1">(4.0)</span>
+                        <!-- Product 2: Samsung -->
+                        <article class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition duration-300 border border-gray-100 group">
+                            <div class="relative overflow-hidden bg-gray-100">
+                                <span class="absolute top-3 left-3 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10">New</span>
+                                <button class="absolute top-3 right-3 bg-white text-gray-600 hover:text-red-500 w-9 h-9 rounded-full flex items-center justify-center shadow-md z-10 transition" aria-label="Add Samsung Galaxy S24 Ultra to wishlist"><i class="fa-regular fa-heart" aria-hidden="true"></i></button>
+                                <img src="https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=500&q=80" alt="Samsung Galaxy S24 Ultra" class="w-full h-56 object-cover group-hover:scale-110 transition duration-500">
+                            </div>
+                            <div class="p-5">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider">Samsung</span>
+                                    <div class="flex text-yellow-400 text-xs" aria-label="Rated 5 out of 5">
+                                        <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i>
+                                        <span class="text-gray-400 ml-1">(5.0)</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <h3 class="font-bold text-lg mb-1">Pixel 8 Pro</h3>
-                            <p class="text-gray-500 text-sm mb-3">Tensor G3, 256GB, Obsidian</p>
-                            <div class="flex items-center justify-between mb-4">
-                                <div><span class="text-2xl font-bold text-gray-900">$899</span><span class="text-sm text-gray-400 line-through ml-2">$999</span></div>
-                            </div>
-                            <button class="w-full bg-blue-600 text-white py-2.5 rounded-lg font-semibold hover:bg-blue-700 transition flex items-center justify-center"><i class="fa-solid fa-cart-plus mr-2"></i>Add to Cart</button>
-                        </div>
-                    </div>
-
-                    <!-- Product 4 -->
-                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition duration-300 border border-gray-100 group">
-                        <div class="relative overflow-hidden bg-gray-100">
-                            <span class="absolute top-3 left-3 bg-purple-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10">Hot</span>
-                            <button class="absolute top-3 right-3 bg-white text-gray-600 hover:text-red-500 w-9 h-9 rounded-full flex items-center justify-center shadow-md z-10 transition"><i class="fa-regular fa-heart"></i></button>
-                            <img src="https://images.unsplash.com/photo-1567581935884-3349723552ca?w=500&q=80" alt="OnePlus 12" class="w-full h-56 object-cover group-hover:scale-110 transition duration-500">
-                        </div>
-                        <div class="p-5">
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider">OnePlus</span>
-                                <div class="flex text-yellow-400 text-xs">
-                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
-                                    <span class="text-gray-400 ml-1">(4.7)</span>
+                                <h3 class="font-bold text-lg mb-1">Galaxy S24 Ultra</h3>
+                                <p class="text-gray-500 text-sm mb-3">Snapdragon 8 Gen 3, 512GB</p>
+                                <div class="flex items-center justify-between mb-4">
+                                    <div><span class="text-2xl font-bold text-gray-900">$1,199</span><span class="text-sm text-gray-400 line-through ml-2">$1,399</span></div>
                                 </div>
+                                <button class="w-full bg-blue-600 text-white py-2.5 rounded-lg font-semibold hover:bg-blue-700 transition flex items-center justify-center"><i class="fa-solid fa-cart-plus mr-2" aria-hidden="true"></i>Add to Cart</button>
                             </div>
-                            <h3 class="font-bold text-lg mb-1">OnePlus 12</h3>
-                            <p class="text-gray-500 text-sm mb-3">Snapdragon 8 Gen 3, 256GB</p>
-                            <div class="flex items-center justify-between mb-4">
-                                <div><span class="text-2xl font-bold text-gray-900">$799</span><span class="text-sm text-gray-400 line-through ml-2">$899</span></div>
+                        </article>
+
+                        <!-- Product 3: Google -->
+                        <article class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition duration-300 border border-gray-100 group">
+                            <div class="relative overflow-hidden bg-gray-100">
+                                <span class="absolute top-3 left-3 bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10">-10%</span>
+                                <button class="absolute top-3 right-3 bg-white text-gray-600 hover:text-red-500 w-9 h-9 rounded-full flex items-center justify-center shadow-md z-10 transition" aria-label="Add Google Pixel 8 Pro to wishlist"><i class="fa-regular fa-heart" aria-hidden="true"></i></button>
+                                <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=500&q=80" alt="Google Pixel 8 Pro in obsidian" class="w-full h-56 object-cover group-hover:scale-110 transition duration-500">
                             </div>
-                            <button class="w-full bg-blue-600 text-white py-2.5 rounded-lg font-semibold hover:bg-blue-700 transition flex items-center justify-center"><i class="fa-solid fa-cart-plus mr-2"></i>Add to Cart</button>
-                        </div>
+                            <div class="p-5">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider">Google</span>
+                                    <div class="flex text-yellow-400 text-xs" aria-label="Rated 4 out of 5">
+                                        <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-regular fa-star" aria-hidden="true"></i>
+                                        <span class="text-gray-400 ml-1">(4.0)</span>
+                                    </div>
+                                </div>
+                                <h3 class="font-bold text-lg mb-1">Pixel 8 Pro</h3>
+                                <p class="text-gray-500 text-sm mb-3">Tensor G3, 256GB, Obsidian</p>
+                                <div class="flex items-center justify-between mb-4">
+                                    <div><span class="text-2xl font-bold text-gray-900">$899</span><span class="text-sm text-gray-400 line-through ml-2">$999</span></div>
+                                </div>
+                                <button class="w-full bg-blue-600 text-white py-2.5 rounded-lg font-semibold hover:bg-blue-700 transition flex items-center justify-center"><i class="fa-solid fa-cart-plus mr-2" aria-hidden="true"></i>Add to Cart</button>
+                            </div>
+                        </article>
+
+                        <!-- Product 4: OnePlus -->
+                        <article class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition duration-300 border border-gray-100 group">
+                            <div class="relative overflow-hidden bg-gray-100">
+                                <span class="absolute top-3 left-3 bg-purple-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10">Hot</span>
+                                <button class="absolute top-3 right-3 bg-white text-gray-600 hover:text-red-500 w-9 h-9 rounded-full flex items-center justify-center shadow-md z-10 transition" aria-label="Add OnePlus 12 to wishlist"><i class="fa-regular fa-heart" aria-hidden="true"></i></button>
+                                <img src="https://images.unsplash.com/photo-1567581935884-3349723552ca?w=500&q=80" alt="OnePlus 12" class="w-full h-56 object-cover group-hover:scale-110 transition duration-500">
+                            </div>
+                            <div class="p-5">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider">OnePlus</span>
+                                    <div class="flex text-yellow-400 text-xs" aria-label="Rated 4.7 out of 5">
+                                        <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star-half-stroke" aria-hidden="true"></i>
+                                        <span class="text-gray-400 ml-1">(4.7)</span>
+                                    </div>
+                                </div>
+                                <h3 class="font-bold text-lg mb-1">OnePlus 12</h3>
+                                <p class="text-gray-500 text-sm mb-3">Snapdragon 8 Gen 3, 256GB</p>
+                                <div class="flex items-center justify-between mb-4">
+                                    <div><span class="text-2xl font-bold text-gray-900">$799</span><span class="text-sm text-gray-400 line-through ml-2">$899</span></div>
+                                </div>
+                                <button class="w-full bg-blue-600 text-white py-2.5 rounded-lg font-semibold hover:bg-blue-700 transition flex items-center justify-center"><i class="fa-solid fa-cart-plus mr-2" aria-hidden="true"></i>Add to Cart</button>
+                            </div>
+                        </article>
                     </div>
                 </div>
 
-                <div class="text-center mt-12">
-                    <a href="#" class="inline-block bg-gray-900 text-white px-10 py-3 rounded-full font-semibold hover:bg-gray-800 transition shadow-md">View All Products <i class="fa-solid fa-arrow-right ml-2"></i></a>
-                </div>
-            </div>
-        </section>
-
-        <!-- PROMO BANNER -->
-        <section class="py-16 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="bg-gradient-to-r from-indigo-600 to-blue-600 rounded-3xl overflow-hidden shadow-2xl">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-0 items-center">
-                        <div class="p-10 md:p-16 text-white">
-                            <span class="inline-block bg-yellow-400 text-gray-900 text-xs font-bold px-4 py-1 rounded-full mb-4">LIMITED OFFER</span>
-                            <h2 class="text-3xl md:text-4xl font-bold mb-4">Get 20% Off on Accessories</h2>
-                            <p class="text-blue-100 mb-8 max-w-md">Buy any smartphone and get 20% off on all accessories including cases, chargers, and earbuds.</p>
-                            <a href="#" class="bg-white text-blue-700 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition inline-block">Shop Accessories</a>
-                        </div>
-                        <div class="h-64 md:h-full">
-                            <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=800&q=80" alt="Accessories" class="w-full h-full object-cover">
-                        </div>
+                <!-- 3. TAB PANEL: APPLE -->
+                <div role="tabpanel" id="panel-apple" aria-labelledby="tab-apple" tabindex="0" hidden>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <article class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition duration-300 border border-gray-100 group">
+                            <div class="relative overflow-hidden bg-gray-100">
+                                <span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10">-15%</span>
+                                <button class="absolute top-3 right-3 bg-white text-gray-600 hover:text-red-500 w-9 h-9 rounded-full flex items-center justify-center shadow-md z-10 transition" aria-label="Add iPhone 15 Pro Max to wishlist"><i class="fa-regular fa-heart" aria-hidden="true"></i></button>
+                                <img src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=500&q=80" alt="iPhone 15 Pro Max in titanium finish" class="w-full h-56 object-cover group-hover:scale-110 transition duration-500">
+                            </div>
+                            <div class="p-5">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider">Apple</span>
+                                    <div class="flex text-yellow-400 text-xs" aria-label="Rated 4.5 out of 5">
+                                        <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star-half-stroke" aria-hidden="true"></i>
+                                        <span class="text-gray-400 ml-1">(4.5)</span>
+                                    </div>
+                                </div>
+                                <h3 class="font-bold text-lg mb-1">iPhone 15 Pro Max</h3>
+                                <p class="text-gray-500 text-sm mb-3">A17 Pro chip, 256GB, Titanium</p>
+                                <div class="flex items-center justify-between mb-4">
+                                    <div><span class="text-2xl font-bold text-gray-900">$1,099</span><span class="text-sm text-gray-400 line-through ml-2">$1,299</span></div>
+                                </div>
+                                <button class="w-full bg-blue-600 text-white py-2.5 rounded-lg font-semibold hover:bg-blue-700 transition flex items-center justify-center"><i class="fa-solid fa-cart-plus mr-2" aria-hidden="true"></i>Add to Cart</button>
+                            </div>
+                        </article>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- BRANDS -->
-        <section class="py-12 bg-gray-100">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <p class="text-center text-gray-500 text-sm uppercase tracking-widest mb-8">Trusted Brands We Carry</p>
-                <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60">
-                    <i class="fa-brands fa-apple text-5xl text-gray-700"></i>
-                    <i class="fa-brands fa-android text-5xl text-gray-700"></i>
-                    <i class="fa-brands fa-google text-5xl text-gray-700"></i>
-                    <i class="fa-brands fa-windows text-5xl text-gray-700"></i>
-                </div>
-            </div>
-        </section>
-
-        <!-- NEWSLETTER -->
-        <section class="py-16 bg-white">
-            <div class="max-w-3xl mx-auto text-center px-4">
-                <i class="fa-solid fa-envelope-open-text text-5xl text-blue-600 mb-6"></i>
-                <h2 class="text-3xl font-bold mb-4">Subscribe to Our Newsletter</h2>
-                <p class="text-gray-600 mb-8">Get exclusive deals, new arrivals, and tech tips delivered straight to your inbox.</p>
-                <form class="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto">
-                    <input type="email" placeholder="Enter your email" required class="flex-grow px-5 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none bg-gray-50">
-                    <button type="submit" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition">Subscribe</button>
-                </form>
-            </div>
-        </section>
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="bg-gray-900 text-white pt-16 pb-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
-                <div>
-                    <a href="index.html" class="text-2xl font-bold text-blue-400 mb-4 block"><i class="fa-solid fa-mobile-screen-button mr-2"></i>MobiTech</a>
-                    <p class="text-gray-400 mb-4">Your trusted partner for the latest smartphones and accessories.</p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fa-brands fa-youtube"></i></a>
+                <!-- 4. TAB PANEL: SAMSUNG -->
+                <div role="tabpanel" id="panel-samsung" aria-labelledby="tab-samsung" tabindex="0" hidden>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <article class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition duration-300 border border-gray-100 group">
+                            <div class="relative overflow-hidden bg-gray-100">
+                                <span class="absolute top-3 left-3 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10">New</span>
+                                <button class="absolute top-3 right-3 bg-white text-gray-600 hover:text-red-500 w-9 h-9 rounded-full flex items-center justify-center shadow-md z-10 transition" aria-label="Add Samsung Galaxy S24 Ultra to wishlist"><i class="fa-regular fa-heart" aria-hidden="true"></i></button>
+                                <img src="https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=500&q=80" alt="Samsung Galaxy S24 Ultra" class="w-full h-56 object-cover group-hover:scale-110 transition duration-500">
+                            </div>
+                            <div class="p-5">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider">Samsung</span>
+                                    <div class="flex text-yellow-400 text-xs" aria-label="Rated 5 out of 5">
+                                        <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i>
+                                        <span class="text-gray-400 ml-1">(5.0)</span>
+                                    </div>
+                                </div>
+                                <h3 class="font-bold text-lg mb-1">Galaxy S24 Ultra</h3>
+                                <p class="text-gray-500 text-sm mb-3">Snapdragon 8 Gen 3, 512GB</p>
+                                <div class="flex items-center justify-between mb-4">
+                                    <div><span class="text-2xl font-bold text-gray-900">$1,199</span><span class="text-sm text-gray-400 line-through ml-2">$1,399</span></div>
+                                </div>
+                                <button class="w-full bg-blue-600 text-white py-2.5 rounded-lg font-semibold hover:bg-blue-700 transition flex items-center justify-center"><i class="fa-solid fa-cart-plus mr-2" aria-hidden="true"></i>Add to Cart</button>
+                            </div>
+                        </article>
                     </div>
                 </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Shop</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="index.html#products" class="hover:text-blue-400 transition">Smartphones</a></li>
-                        <li><a href="#" class="hover:text-blue-400 transition">Accessories</a></li>
-                        <li><a href="#" class="hover:text-blue-400 transition">Deals</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Company</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="about.html" class="hover:text-blue-400 transition">About Us</a></li>
-                        <li><a href="contact.html" class="hover:text-blue-400 transition">Contact</a></li>
-                        <li><a href="#" class="hover:text-blue-400 transition">Careers</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li class="flex items-start"><i class="fa-solid fa-location-dot mt-1 mr-3 text-blue-400"></i> 123 Mobile Street, Tech City</li>
-                        <li class="flex items-start"><i class="fa-solid fa-envelope mt-1 mr-3 text-blue-400"></i> support@mobitech.com</li>
-                        <li class="flex items-start"><i class="fa-solid fa-phone mt-1 mr-3 text-blue-400"></i> +1 234 567 890</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm">
-                <p>&copy; 2026 MobiTech. All rights reserved. Founded by M. Azmat Abbas.</p>
-                <div class="flex space-x-6 mt-4 md:mt-0">
-                    <a href="#" class="hover:text-blue-400 transition">Privacy Policy</a>
-                    <a href="#" class="hover:text-blue-400 transition">Terms of Service</a>
-                </div>
-            </div>
-        </div>
-    </footer>
 
-    <script src="assets/js/script.js"></script>
-</body>
-</html>
+                <!-- 5. TAB PANEL: GOOGLE -->
+                <div role="tabpanel" id="panel-google" aria-labelledby="tab-google" tabindex="0" hidden>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <article class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition duration-300 border border-gray-100 group">
+                            <div class="relative overflow-hidden bg-gray-100">
+                                <span class="absolute top-3 left-3 bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10">-10%</span>
+                                <button class="absolute top-3 right-3 bg-white text-gray-600 hover:text-red-500 w-9 h-9 rounded-full flex items-center justify-center shadow-md z-10 transition" aria-label="Add Google Pixel 8 Pro to wishlist"><i class="fa-regular fa-heart" aria-hidden="true"></i></button>
+                                <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=500&q=80" alt="Google Pixel 8 Pro in obsidian" class="w-full h-56 object-cover group-hover:scale-110 transition duration-500">
+                            </div>
+                            <div class="p-5">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider">Google</span>
+                                    <div class="flex text-yellow-400 text-xs" aria-label="Rated 4 out of 5">
+                                        <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-regular fa-star" aria-hidden="true"></i>
+                                        <span class="text-gray-400 ml-1">(4.0)</span>
+                                    </div>
+                                </div>
+                                <h3 class="font-bold text-lg mb-1">Pixel 8 Pro</h3>
+                                <p class="text-gray-500 text-sm mb-3">Tensor G3, 256GB, Obsidian</p>
+                                <div class="flex items-center justify-between mb-4">
+                                    <div><span class="text-2xl font-bold text-gray-900">$899</span><span class="text-sm text-gray-400 line-through ml-2">$999</span></div>
+                                </div>
+                                <button class="w-full bg-blue-600 text-white py-2.5 rounded-lg font-semibold hover:bg-blue-700 transition flex items-center justify-center"><i class="fa-solid fa-cart-plus mr-2" aria-hidden="true"></i>Add to Cart</button>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- 6. TAB PANEL: ONEPLUS -->
+                <div role="tabpanel" id="panel-oneplus" aria-labelledby="tab-oneplus" tabindex="0" hidden>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <article class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition duration-300 border border-gray-100 group">
+                            <div class="relative overflow-hidden bg-gray-100">
+                                <span class="absolute top-3 left-3 bg-purple-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10">Hot</span>
+                                <button class="absolute top-3 right-3 bg-white text-gray-600 hover:text-red-500 w-9 h-9 rounded-full flex items-center justify-center shadow-md z-10 transition" aria-label="Add OnePlus 12 to wishlist"><i class="fa-regular fa-heart" aria-hidden="true"></i></button>
+                                <img src="https://images.unsplash.com/photo-1567581935884-3349723552ca?w=500&q=80" alt="OnePlus 12" class="w-full h-56 object-cover group-hover:scale-110 transition duration-500">
+                            </div>
+                            <div class="p-5">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider">OnePlus</span>
+                                    <div class="flex text-yellow-400 text-xs" aria-label="Rated 4.7 out of 5">
+                                        <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star-half-stroke" aria-hidden="true"></i>
+                                        <span class="text-gray-400 ml-1">(4.7)</span>
+                                    </div>
+                                </div>
+                                <h3 class="font-bold text-lg mb-1">OnePlus 12</h3>
+                                <p class="text-gray-500 text-sm mb-3">Snapdragon 8 Gen 3, 256GB</p>
+                                <div class="flex items-center justify-between mb-4">
+                                    <div><span class="text-2xl font-bold text-gray-900">$799</span><span class="text-sm text-gray-400 line-through ml-2">$899</span></div>
+                                </div>
+                                <button class="w-full bg-blue-600 text-white py-2.5 rounded-lg font-semib
