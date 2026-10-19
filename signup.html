@@ -8,7 +8,61 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>body { font-family: 'Inter', sans-serif; }</style>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+
+        /* ===== SEMANTIC ACCOUNT-TYPE TABS ===== */
+        [role="tablist"].acct-tabs {
+            display: flex;
+            gap: 0.5rem;
+            padding: 0.25rem;
+            background-color: #f3f4f6;        /* gray-100 */
+            border-radius: 0.75rem;
+            margin-bottom: 1.75rem;
+        }
+
+        [role="tab"].acct-tab {
+            flex: 1 1 0%;
+            padding: 0.625rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+            cursor: pointer;
+            border: 1px solid transparent;
+            background-color: transparent;
+            color: #4b5563;                   /* gray-600 */
+            transition: background-color .2s, color .2s, box-shadow .2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        [role="tab"].acct-tab:hover {
+            color: #1d4ed8;                   /* blue-700 */
+        }
+
+        [role="tab"].acct-tab[aria-selected="true"] {
+            background-color: #ffffff;
+            color: #1d4ed8;
+            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+        }
+
+        [role="tab"].acct-tab:focus-visible {
+            outline: 3px solid #93c5fd;
+            outline-offset: 2px;
+        }
+
+        [role="tabpanel"][hidden] {
+            display: none;
+        }
+
+        [role="tabpanel"]:focus-visible {
+            outline: 3px solid #93c5fd;
+            outline-offset: 4px;
+            border-radius: 0.5rem;
+        }
+    </style>
 </head>
 <body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
 
@@ -17,18 +71,18 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
-                    <a href="index.html" class="text-2xl font-bold text-blue-600"><i class="fa-solid fa-code mr-2"></i>TechNova</a>
+                    <a href="index.html" class="text-2xl font-bold text-blue-600"><i class="fa-solid fa-code mr-2" aria-hidden="true"></i>TechNova</a>
                 </div>
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="index.html" class="text-gray-600 hover:text-blue-600 transition duration-300">Home</a>
                     <a href="about.html" class="text-gray-600 hover:text-blue-600 transition duration-300">About</a>
                     <a href="contact.html" class="text-gray-600 hover:text-blue-600 transition duration-300">Contact</a>
                     <a href="signin.html" class="text-gray-600 hover:text-blue-600 transition duration-300">Sign In</a>
-                    <a href="signup.html" class="bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition duration-300 shadow-md">Sign Up</a>
+                    <a href="signup.html" class="bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition duration-300 shadow-md" aria-current="page">Sign Up</a>
                 </div>
                 <div class="flex items-center md:hidden">
-                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-blue-600 focus:outline-none">
-                        <i class="fa-solid fa-bars text-2xl"></i>
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-blue-600 focus:outline-none" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-menu">
+                        <i class="fa-solid fa-bars text-2xl" aria-hidden="true"></i>
                     </button>
                 </div>
             </div>
@@ -39,84 +93,164 @@
                 <a href="about.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-gray-50">About</a>
                 <a href="contact.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-gray-50">Contact</a>
                 <a href="signin.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-gray-50">Sign In</a>
-                <a href="signup.html" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-blue-600 hover:bg-blue-700 text-center mt-2">Sign Up</a>
+                <a href="signup.html" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-blue-600 hover:bg-blue-700 text-center mt-2" aria-current="page">Sign Up</a>
             </div>
         </div>
     </nav>
 
     <!-- ================= MAIN CONTENT ================= -->
     <main class="flex-grow flex items-center justify-center py-20 px-4">
-        
+
         <!-- Sign Up Card -->
         <div class="bg-white p-8 md:p-10 rounded-2xl shadow-xl border border-gray-100 w-full max-w-lg">
             <div class="text-center mb-8">
                 <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
-                    <i class="fa-solid fa-user-plus"></i>
+                    <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
                 </div>
                 <h2 class="text-2xl font-bold text-gray-900">Create an Account</h2>
-                <p class="text-gray-500 mt-2">Join us and start your journey today</p>
+                <p class="text-gray-500 mt-2">Choose your account type and get started</p>
             </div>
 
-            <form action="#" method="POST" class="space-y-5">
-                <!-- Full Name -->
-                <div>
-                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-                    <div class="relative">
-                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <i class="fa-solid fa-user text-gray-400"></i>
-                        </div>
-                        <input type="text" id="name" name="name" required placeholder="John Doe" class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition bg-gray-50">
-                    </div>
-                </div>
-                <!-- Email -->
-                <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-                    <div class="relative">
-                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <i class="fa-solid fa-envelope text-gray-400"></i>
-                        </div>
-                        <input type="email" id="email" name="email" required placeholder="you@example.com" class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition bg-gray-50">
-                    </div>
-                </div>
-                <!-- Password -->
-                <div>
-                    <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-                    <div class="relative">
-                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <i class="fa-solid fa-lock text-gray-400"></i>
-                        </div>
-                        <input type="password" id="password" name="password" required placeholder="••••••••" class="w-full pl-10 pr-10 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition bg-gray-50">
-                        <button type="button" id="togglePassword" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 focus:outline-none">
-                            <i class="fa-solid fa-eye"></i>
-                        </button>
-                    </div>
-                </div>
-                <!-- Confirm Password -->
-                <div>
-                    <label for="confirm_password" class="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
-                    <div class="relative">
-                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <i class="fa-solid fa-lock text-gray-400"></i>
-                        </div>
-                        <input type="password" id="confirm_password" name="confirm_password" required placeholder="••••••••" class="w-full pl-10 pr-10 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition bg-gray-50">
-                    </div>
-                </div>
-                <!-- Terms & Conditions -->
-                <div class="flex items-start">
-                    <input type="checkbox" id="terms" name="terms" required class="mt-1 rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
-                    <label for="terms" class="ml-2 text-sm text-gray-600">
-                        I agree to the <a href="#" class="text-blue-600 hover:underline">Terms of Service</a> and <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a>.
-                    </label>
-                </div>
-                <!-- Submit Button -->
-                <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 shadow-md">
-                    Create Account
+            <!-- ===== ACCOUNT TYPE TABS ===== -->
+            <div role="tablist" aria-label="Account type" aria-orientation="horizontal" class="acct-tabs">
+                <button role="tab" id="tab-personal"
+                        aria-controls="panel-personal"
+                        aria-selected="true"
+                        tabindex="0"
+                        class="acct-tab">
+                    <i class="fa-solid fa-user" aria-hidden="true"></i>
+                    <span>Personal</span>
                 </button>
-            </form>
+                <button role="tab" id="tab-business"
+                        aria-controls="panel-business"
+                        aria-selected="false"
+                        tabindex="-1"
+                        class="acct-tab">
+                    <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
+                    <span>Business</span>
+                </button>
+            </div>
+
+            <!-- ===== TAB PANEL: PERSONAL (original form) ===== -->
+            <div role="tabpanel" id="panel-personal" aria-labelledby="tab-personal" tabindex="0">
+                <form action="#" method="POST" class="space-y-5">
+                    <!-- Full Name -->
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fa-solid fa-user text-gray-400" aria-hidden="true"></i>
+                            </div>
+                            <input type="text" id="name" name="name" required placeholder="John Doe" class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition bg-gray-50">
+                        </div>
+                    </div>
+                    <!-- Email -->
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fa-solid fa-envelope text-gray-400" aria-hidden="true"></i>
+                            </div>
+                            <input type="email" id="email" name="email" required placeholder="you@example.com" class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition bg-gray-50">
+                        </div>
+                    </div>
+                    <!-- Password -->
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fa-solid fa-lock text-gray-400" aria-hidden="true"></i>
+                            </div>
+                            <input type="password" id="password" name="password" required placeholder="••••••••" class="w-full pl-10 pr-10 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition bg-gray-50">
+                            <button type="button" id="togglePassword" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 focus:outline-none" aria-label="Show password">
+                                <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Confirm Password -->
+                    <div>
+                        <label for="confirm_password" class="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fa-solid fa-lock text-gray-400" aria-hidden="true"></i>
+                            </div>
+                            <input type="password" id="confirm_password" name="confirm_password" required placeholder="••••••••" class="w-full pl-10 pr-10 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition bg-gray-50">
+                        </div>
+                    </div>
+                    <!-- Terms & Conditions -->
+                    <div class="flex items-start">
+                        <input type="checkbox" id="terms" name="terms" required class="mt-1 rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                        <label for="terms" class="ml-2 text-sm text-gray-600">
+                            I agree to the <a href="#" class="text-blue-600 hover:underline">Terms of Service</a> and <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a>.
+                        </label>
+                    </div>
+                    <!-- Submit Button -->
+                    <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 shadow-md">
+                        Create Personal Account
+                    </button>
+                </form>
+            </div>
+
+            <!-- ===== TAB PANEL: BUSINESS ===== -->
+            <div role="tabpanel" id="panel-business" aria-labelledby="tab-business" tabindex="0" hidden>
+                <form action="#" method="POST" class="space-y-5">
+                    <!-- Company Name -->
+                    <div>
+                        <label for="company_name" class="block text-sm font-medium text-gray-700 mb-1">Company Name</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fa-solid fa-building text-gray-400" aria-hidden="true"></i>
+                            </div>
+                            <input type="text" id="company_name" name="company_name" required placeholder="Acme Inc." class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition bg-gray-50">
+                        </div>
+                    </div>
+                    <!-- Work Email -->
+                    <div>
+                        <label for="business_email" class="block text-sm font-medium text-gray-700 mb-1">Work Email</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fa-solid fa-envelope text-gray-400" aria-hidden="true"></i>
+                            </div>
+                            <input type="email" id="business_email" name="business_email" required placeholder="you@company.com" class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition bg-gray-50">
+                        </div>
+                    </div>
+                    <!-- Full Name (contact person) -->
+                    <div>
+                        <label for="business_name" class="block text-sm font-medium text-gray-700 mb-1">Your Full Name</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fa-solid fa-user text-gray-400" aria-hidden="true"></i>
+                            </div>
+                            <input type="text" id="business_name" name="business_name" required placeholder="John Doe" class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition bg-gray-50">
+                        </div>
+                    </div>
+                    <!-- Password -->
+                    <div>
+                        <label for="business_password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fa-solid fa-lock text-gray-400" aria-hidden="true"></i>
+                            </div>
+                            <input type="password" id="business_password" name="business_password" required placeholder="••••••••" class="w-full pl-10 pr-10 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition bg-gray-50">
+                        </div>
+                    </div>
+                    <!-- Terms & Conditions -->
+                    <div class="flex items-start">
+                        <input type="checkbox" id="business_terms" name="business_terms" required class="mt-1 rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                        <label for="business_terms" class="ml-2 text-sm text-gray-600">
+                            I agree to the <a href="#" class="text-blue-600 hover:underline">Business Terms</a> and <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a>.
+                        </label>
+                    </div>
+                    <!-- Submit Button -->
+                    <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 shadow-md">
+                        Create Business Account
+                    </button>
+                </form>
+            </div>
 
             <!-- Sign In Link -->
             <p class="text-center mt-8 text-sm text-gray-600">
-                Already have an account? 
+                Already have an account?
                 <a href="signin.html" class="font-medium text-blue-600 hover:text-blue-500">Sign in here</a>
             </p>
         </div>
@@ -128,12 +262,12 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
                 <div class="col-span-1 md:col-span-1">
-                    <a href="index.html" class="text-2xl font-bold text-blue-400 mb-4 block"><i class="fa-solid fa-code mr-2"></i>TechNova</a>
+                    <a href="index.html" class="text-2xl font-bold text-blue-400 mb-4 block"><i class="fa-solid fa-code mr-2" aria-hidden="true"></i>TechNova</a>
                     <p class="text-gray-400 mb-4">Building the future of the web, one line of code at a time.</p>
                     <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition" aria-label="Twitter"><i class="fa-brands fa-twitter" aria-hidden="true"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
                     </div>
                 </div>
                 <div>
@@ -155,9 +289,9 @@
                 <div>
                     <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
                     <ul class="space-y-2 text-gray-400">
-                        <li class="flex items-start"><i class="fa-solid fa-location-dot mt-1 mr-3 text-blue-400"></i> 123 Web Street, Tech City</li>
-                        <li class="flex items-start"><i class="fa-solid fa-envelope mt-1 mr-3 text-blue-400"></i> info@technova.com</li>
-                        <li class="flex items-start"><i class="fa-solid fa-phone mt-1 mr-3 text-blue-400"></i> +1 234 567 890</li>
+                        <li class="flex items-start"><i class="fa-solid fa-location-dot mt-1 mr-3 text-blue-400" aria-hidden="true"></i> 123 Web Street, Tech City</li>
+                        <li class="flex items-start"><i class="fa-solid fa-envelope mt-1 mr-3 text-blue-400" aria-hidden="true"></i> info@technova.com</li>
+                        <li class="flex items-start"><i class="fa-solid fa-phone mt-1 mr-3 text-blue-400" aria-hidden="true"></i> +1 234 567 890</li>
                     </ul>
                 </div>
             </div>
@@ -166,6 +300,58 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        /* ===== ACCOUNT-TYPE SEMANTIC TABS CONTROLLER ===== */
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = Array.from(document.querySelectorAll('.acct-tabs [role="tab"]'));
+            if (!tabs.length) return;
+
+            function activateTab(newTab) {
+                tabs.forEach(tab => {
+                    const isSelected = tab === newTab;
+                    tab.setAttribute('aria-selected', String(isSelected));
+                    tab.tabIndex = isSelected ? 0 : -1;
+
+                    const panel = document.getElementById(tab.getAttribute('aria-controls'));
+                    if (panel) panel.hidden = !isSelected;
+                });
+                newTab.focus();
+            }
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => activateTab(tab));
+
+                tab.addEventListener('keydown', (e) => {
+                    const i = tabs.indexOf(tab);
+                    let next;
+
+                    switch (e.key) {
+                        // Horizontal tabs: Left/Right move; Up/Down also supported
+                        case 'ArrowRight':
+                        case 'ArrowDown':
+                            next = tabs[(i + 1) % tabs.length];
+                            break;
+                        case 'ArrowLeft':
+                        case 'ArrowUp':
+                            next = tabs[(i - 1 + tabs.length) % tabs.length];
+                            break;
+                        case 'Home':
+                            next = tabs[0];
+                            break;
+                        case 'End':
+                            next = tabs[tabs.length - 1];
+                            break;
+                        default:
+                            return;
+                    }
+                    e.preventDefault();
+                    activateTab(next);
+                });
+            });
+        });
+    </script>
+
     <script src="assets/js/script.js"></script>
 </body>
 </html>
