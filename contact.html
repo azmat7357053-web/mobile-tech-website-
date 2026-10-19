@@ -8,7 +8,74 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <style>body { font-family: 'Inter', sans-serif; }</style>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+
+        /* ===== SEMANTIC FAQ TABS ===== */
+        [role="tablist"].faq-tabs {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        [role="tab"].faq-tab {
+            width: 100%;
+            text-align: left;
+            padding: 1rem 1.25rem;
+            border-radius: 0.75rem;
+            border: 1px solid #f3f4f6;
+            background-color: #f9fafb;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color .2s, border-color .2s, box-shadow .2s;
+        }
+
+        [role="tab"].faq-tab:hover {
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+
+        [role="tab"].faq-tab[aria-selected="true"] {
+            background-color: #eff6ff;      /* blue-50 */
+            border-color: #bfdbfe;          /* blue-200 */
+            color: #1d4ed8;                 /* blue-700 */
+        }
+
+        [role="tab"].faq-tab[aria-selected="false"] {
+            color: #1f2937;                 /* gray-800 */
+        }
+
+        [role="tab"].faq-tab:focus-visible {
+            outline: 3px solid #93c5fd;
+            outline-offset: 2px;
+        }
+
+        /* Chevron rotates only on the selected tab */
+        [role="tab"].faq-tab .faq-chevron {
+            transition: transform .2s;
+        }
+        [role="tab"].faq-tab[aria-selected="true"] .faq-chevron {
+            transform: rotate(180deg);
+        }
+
+        /* Panels */
+        [role="tabpanel"].faq-panel {
+            background-color: #f9fafb;
+            border: 1px solid #f3f4f6;
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+        }
+        [role="tabpanel"].faq-panel[hidden] {
+            display: none;
+        }
+        [role="tabpanel"].faq-panel:focus-visible {
+            outline: 3px solid #93c5fd;
+            outline-offset: 2px;
+        }
+    </style>
 </head>
 <body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
 
@@ -24,27 +91,27 @@
             <div class="flex justify-between h-16 items-center">
                 <div class="flex items-center">
                     <a href="index.html" class="text-2xl font-bold text-blue-600 flex items-center">
-                        <i class="fa-solid fa-mobile-screen-button mr-2"></i>MobiTech
+                        <i class="fa-solid fa-mobile-screen-button mr-2" aria-hidden="true"></i>MobiTech
                     </a>
                 </div>
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="index.html" class="text-gray-600 hover:text-blue-600 transition">Home</a>
                     <a href="about.html" class="text-gray-600 hover:text-blue-600 transition">About</a>
-                    <a href="contact.html" class="text-blue-600 font-semibold border-b-2 border-blue-600 pb-1">Contact</a>
+                    <a href="contact.html" class="text-blue-600 font-semibold border-b-2 border-blue-600 pb-1" aria-current="page">Contact</a>
                     <a href="signin.html" class="text-gray-600 hover:text-blue-600 transition">Sign In</a>
                     <a href="signup.html" class="bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition shadow-md">Sign Up</a>
-                    <a href="#" class="text-gray-600 hover:text-blue-600 relative">
-                        <i class="fa-solid fa-cart-shopping text-xl"></i>
+                    <a href="#" class="text-gray-600 hover:text-blue-600 relative" aria-label="Cart, 3 items">
+                        <i class="fa-solid fa-cart-shopping text-xl" aria-hidden="true"></i>
                         <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
                     </a>
                 </div>
                 <div class="flex items-center md:hidden space-x-4">
-                    <a href="#" class="text-gray-600 relative">
-                        <i class="fa-solid fa-cart-shopping text-xl"></i>
+                    <a href="#" class="text-gray-600 relative" aria-label="Cart, 3 items">
+                        <i class="fa-solid fa-cart-shopping text-xl" aria-hidden="true"></i>
                         <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
                     </a>
-                    <button id="mobile-menu-btn" class="text-gray-600 focus:outline-none">
-                        <i class="fa-solid fa-bars text-2xl"></i>
+                    <button id="mobile-menu-btn" class="text-gray-600 focus:outline-none" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-menu">
+                        <i class="fa-solid fa-bars text-2xl" aria-hidden="true"></i>
                     </button>
                 </div>
             </div>
@@ -53,7 +120,7 @@
             <div class="px-4 pt-2 pb-4 space-y-2">
                 <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-gray-50">Home</a>
                 <a href="about.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-gray-50">About</a>
-                <a href="contact.html" class="block px-3 py-2 rounded-md text-base font-medium text-blue-600 bg-blue-50">Contact</a>
+                <a href="contact.html" class="block px-3 py-2 rounded-md text-base font-medium text-blue-600 bg-blue-50" aria-current="page">Contact</a>
                 <a href="signin.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-gray-50">Sign In</a>
                 <a href="signup.html" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-blue-600 hover:bg-blue-700 text-center mt-2">Sign Up</a>
             </div>
@@ -77,21 +144,21 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div class="bg-gray-50 p-8 rounded-2xl text-center border border-gray-100 hover:shadow-lg transition">
                         <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
-                            <i class="fa-solid fa-location-dot"></i>
+                            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-2">Visit Our Store</h3>
                         <p class="text-gray-600">123 Mobile Street<br>Tech City, TC 10001</p>
                     </div>
                     <div class="bg-gray-50 p-8 rounded-2xl text-center border border-gray-100 hover:shadow-lg transition">
                         <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
-                            <i class="fa-solid fa-envelope"></i>
+                            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-2">Email Us</h3>
                         <p class="text-gray-600">support@mobitech.com<br>azmat@mobitech.com</p>
                     </div>
                     <div class="bg-gray-50 p-8 rounded-2xl text-center border border-gray-100 hover:shadow-lg transition">
                         <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
-                            <i class="fa-solid fa-phone"></i>
+                            <i class="fa-solid fa-phone" aria-hidden="true"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-2">Call Us</h3>
                         <p class="text-gray-600">+1 234 567 890<br>Mon-Sat, 9am-8pm</p>
@@ -110,7 +177,6 @@
                         <h2 class="text-3xl font-bold mb-2">Send Us a Message</h2>
                         <p class="text-gray-500 mb-8">Fill out the form and we'll get back to you shortly.</p>
 
-                        <!-- FORMSPREE FORM - REPLACE YOUR_FORMSPREE_ID -->
                         <form action="https://formspree.io/f/xaengvpj" method="POST" class="space-y-5">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                                 <div>
@@ -144,7 +210,7 @@
                                 <textarea id="message" name="message" rows="5" required placeholder="Write your message here..." class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition bg-gray-50 resize-none"></textarea>
                             </div>
                             <button type="submit" class="bg-blue-600 text-white px-10 py-3 rounded-full font-semibold hover:bg-blue-700 transition shadow-md w-full md:w-auto">
-                                Send Message <i class="fa-solid fa-paper-plane ml-2"></i>
+                                Send Message <i class="fa-solid fa-paper-plane ml-2" aria-hidden="true"></i>
                             </button>
                         </form>
                     </div>
@@ -153,7 +219,7 @@
                     <div class="space-y-6">
                         <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100">
                             <h3 class="text-lg font-bold mb-4 flex items-center">
-                                <i class="fa-solid fa-clock text-blue-600 mr-2"></i> Business Hours
+                                <i class="fa-solid fa-clock text-blue-600 mr-2" aria-hidden="true"></i> Business Hours
                             </h3>
                             <ul class="space-y-3 text-sm">
                                 <li class="flex justify-between"><span class="text-gray-600">Monday - Friday</span><span class="font-semibold">9am - 8pm</span></li>
@@ -163,14 +229,16 @@
                         </div>
 
                         <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-gray-100">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.2219901290355!2d-74.00369368400567!3d40.71312937933022!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a22a3bda30d%3A0xb89d1fe6bc499443!2sDowntown%20Conference%20Center!5e0!3m2!1sen!2sus!4v1600000000000!5m2!1sen!2sus" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" class="w-full"></iframe>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.2219901290355!2d-74.00369368400567!3d40.71312937933022!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a22a3bda30d%3A0xb89d1fe6bc499443!2sDowntown%20Conference%20Center!5e0!3m2!1sen!2sus!4v1600000000000!5m2!1sen!2sus"
+                                    width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"
+                                    class="w-full" title="MobiTech store location map"></iframe>
                         </div>
 
                         <div class="bg-gradient-to-r from-blue-600 to-indigo-600 p-6 rounded-2xl text-white shadow-md">
-                            <h3 class="font-bold mb-2"><i class="fa-solid fa-headset mr-2"></i> Need Instant Help?</h3>
+                            <h3 class="font-bold mb-2"><i class="fa-solid fa-headset mr-2" aria-hidden="true"></i> Need Instant Help?</h3>
                             <p class="text-sm text-blue-100 mb-4">Chat with us on WhatsApp for quick responses.</p>
                             <a href="#" class="bg-white text-blue-700 px-5 py-2 rounded-full font-semibold text-sm hover:bg-gray-100 transition inline-block">
-                                <i class="fa-brands fa-whatsapp mr-1"></i> Chat Now
+                                <i class="fa-brands fa-whatsapp mr-1" aria-hidden="true"></i> Chat Now
                             </a>
                         </div>
                     </div>
@@ -178,42 +246,62 @@
             </div>
         </section>
 
-        <!-- FAQ Accordion -->
+        <!-- FAQ (SEMANTIC TABS) -->
         <section class="py-16 bg-white">
             <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl font-bold mb-4">Frequently Asked Questions</h2>
                     <p class="text-gray-600">Quick answers to common questions.</p>
                 </div>
-                <div class="space-y-4">
-                    <details class="bg-gray-50 rounded-xl p-5 border border-gray-100 hover:shadow-md transition group">
-                        <summary class="font-semibold cursor-pointer flex justify-between items-center">
-                            Are your phones brand new and original?
-                            <i class="fa-solid fa-chevron-down text-blue-600 group-open:rotate-180 transition"></i>
-                        </summary>
-                        <p class="text-gray-600 mt-3 text-sm">Yes! Every phone we sell is 100% brand new, sealed, and comes with an official manufacturer warranty.</p>
-                    </details>
-                    <details class="bg-gray-50 rounded-xl p-5 border border-gray-100 hover:shadow-md transition group">
-                        <summary class="font-semibold cursor-pointer flex justify-between items-center">
-                            How long does delivery take?
-                            <i class="fa-solid fa-chevron-down text-blue-600 group-open:rotate-180 transition"></i>
-                        </summary>
-                        <p class="text-gray-600 mt-3 text-sm">Standard delivery takes 2-4 business days. Express delivery is available for 24-hour shipment.</p>
-                    </details>
-                    <details class="bg-gray-50 rounded-xl p-5 border border-gray-100 hover:shadow-md transition group">
-                        <summary class="font-semibold cursor-pointer flex justify-between items-center">
-                            Do you offer installment plans?
-                            <i class="fa-solid fa-chevron-down text-blue-600 group-open:rotate-180 transition"></i>
-                        </summary>
-                        <p class="text-gray-600 mt-3 text-sm">Yes, we offer flexible 3, 6, and 12-month installment plans on selected smartphones.</p>
-                    </details>
-                    <details class="bg-gray-50 rounded-xl p-5 border border-gray-100 hover:shadow-md transition group">
-                        <summary class="font-semibold cursor-pointer flex justify-between items-center">
-                            What is your return policy?
-                            <i class="fa-solid fa-chevron-down text-blue-600 group-open:rotate-180 transition"></i>
-                        </summary>
-                        <p class="text-gray-600 mt-3 text-sm">We offer a 30-day return policy on unopened items. For warranty claims, contact our support team.</p>
-                    </details>
+
+                <!-- TAB LIST (vertical) -->
+                <div role="tablist" aria-label="Frequently asked questions" aria-orientation="vertical" class="faq-tabs">
+                    <button role="tab" id="faq-tab-1"
+                            aria-controls="faq-panel-1"
+                            aria-selected="true"
+                            tabindex="0"
+                            class="faq-tab">
+                        <span>Are your phones brand new and original?</span>
+                        <i class="fa-solid fa-chevron-down text-blue-600 faq-chevron" aria-hidden="true"></i>
+                    </button>
+                    <button role="tab" id="faq-tab-2"
+                            aria-controls="faq-panel-2"
+                            aria-selected="false"
+                            tabindex="-1"
+                            class="faq-tab">
+                        <span>How long does delivery take?</span>
+                        <i class="fa-solid fa-chevron-down text-blue-600 faq-chevron" aria-hidden="true"></i>
+                    </button>
+                    <button role="tab" id="faq-tab-3"
+                            aria-controls="faq-panel-3"
+                            aria-selected="false"
+                            tabindex="-1"
+                            class="faq-tab">
+                        <span>Do you offer installment plans?</span>
+                        <i class="fa-solid fa-chevron-down text-blue-600 faq-chevron" aria-hidden="true"></i>
+                    </button>
+                    <button role="tab" id="faq-tab-4"
+                            aria-controls="faq-panel-4"
+                            aria-selected="false"
+                            tabindex="-1"
+                            class="faq-tab">
+                        <span>What is your return policy?</span>
+                        <i class="fa-solid fa-chevron-down text-blue-600 faq-chevron" aria-hidden="true"></i>
+                    </button>
+                </div>
+
+                <!-- TAB PANELS (siblings of tablist) -->
+                <div role="tabpanel" id="faq-panel-1" aria-labelledby="faq-tab-1" tabindex="0" class="faq-panel">
+                    <p class="text-gray-600 text-sm">Yes! Every phone we sell is 100% brand new, sealed, and comes with an official manufacturer warranty.</p>
+                </div>
+                <div role="tabpanel" id="faq-panel-2" aria-labelledby="faq-tab-2" tabindex="0" class="faq-panel" hidden>
+                    <p class="text-gray-600 text-sm">Standard delivery takes 2-4 business days. Express delivery is available for 24-hour shipment.</p>
+                </div>
+                <div role="tabpanel" id="faq-panel-3" aria-labelledby="faq-tab-3" tabindex="0" class="faq-panel" hidden>
+                    <p class="text-gray-600 text-sm">Yes, we offer flexible 3, 6, and 12-month installment plans on selected smartphones.</p>
+                </div>
+                <div role="tabpanel" id="faq-panel-4" aria-labelledby="faq-tab-4" tabindex="0" class="faq-panel" hidden>
+                    <p class="text-gray-600 text-sm">We offer a 30-day return policy on unopened items. For warranty claims, contact our support team.</p>
                 </div>
             </div>
         </section>
@@ -225,13 +313,13 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
                 <div>
-                    <a href="index.html" class="text-2xl font-bold text-blue-400 mb-4 block"><i class="fa-solid fa-mobile-screen-button mr-2"></i>MobiTech</a>
+                    <a href="index.html" class="text-2xl font-bold text-blue-400 mb-4 block"><i class="fa-solid fa-mobile-screen-button mr-2" aria-hidden="true"></i>MobiTech</a>
                     <p class="text-gray-400 mb-4">Your trusted partner for the latest smartphones and accessories.</p>
                     <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition" aria-label="Twitter"><i class="fa-brands fa-twitter" aria-hidden="true"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition" aria-label="YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
                     </div>
                 </div>
                 <div>
@@ -253,9 +341,9 @@
                 <div>
                     <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
                     <ul class="space-y-2 text-gray-400">
-                        <li class="flex items-start"><i class="fa-solid fa-location-dot mt-1 mr-3 text-blue-400"></i> 123 Mobile Street, Tech City</li>
-                        <li class="flex items-start"><i class="fa-solid fa-envelope mt-1 mr-3 text-blue-400"></i> support@mobitech.com</li>
-                        <li class="flex items-start"><i class="fa-solid fa-phone mt-1 mr-3 text-blue-400"></i> +1 234 567 890</li>
+                        <li class="flex items-start"><i class="fa-solid fa-location-dot mt-1 mr-3 text-blue-400" aria-hidden="true"></i> 123 Mobile Street, Tech City</li>
+                        <li class="flex items-start"><i class="fa-solid fa-envelope mt-1 mr-3 text-blue-400" aria-hidden="true"></i> support@mobitech.com</li>
+                        <li class="flex items-start"><i class="fa-solid fa-phone mt-1 mr-3 text-blue-400" aria-hidden="true"></i> +1 234 567 890</li>
                     </ul>
                 </div>
             </div>
@@ -268,6 +356,57 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        /* ===== FAQ SEMANTIC TABS CONTROLLER ===== */
+        document.addEventListener('DOMContentLoaded', () => {
+            const faqTabs = Array.from(document.querySelectorAll('.faq-tabs [role="tab"]'));
+            if (!faqTabs.length) return;
+
+            function activateFaqTab(newTab) {
+                faqTabs.forEach(tab => {
+                    const isSelected = tab === newTab;
+                    tab.setAttribute('aria-selected', String(isSelected));
+                    tab.tabIndex = isSelected ? 0 : -1;
+
+                    const panel = document.getElementById(tab.getAttribute('aria-controls'));
+                    if (panel) panel.hidden = !isSelected;
+                });
+                newTab.focus();
+            }
+
+            faqTabs.forEach(tab => {
+                tab.addEventListener('click', () => activateFaqTab(tab));
+
+                tab.addEventListener('keydown', (e) => {
+                    const i = faqTabs.indexOf(tab);
+                    let next;
+
+                    switch (e.key) {
+                        // Vertical tabs: Up/Down move; Left/Right also supported
+                        case 'ArrowDown':
+                        case 'ArrowRight':
+                            next = faqTabs[(i + 1) % faqTabs.length];
+                            break;
+                        case 'ArrowUp':
+                        case 'ArrowLeft':
+                            next = faqTabs[(i - 1 + faqTabs.length) % faqTabs.length];
+                            break;
+                        case 'Home':
+                            next = faqTabs[0];
+                            break;
+                        case 'End':
+                            next = faqTabs[faqTabs.length - 1];
+                            break;
+                        default:
+                            return;
+                    }
+                    e.preventDefault();
+                    activateFaqTab(next);
+                });
+            });
+        });
+    </script>
 
     <script src="assets/js/script.js"></script>
 </body>
