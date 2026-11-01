@@ -6,6 +6,7 @@
     <title>Home | MobiTech - Buy Latest Smartphones</title>
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -178,7 +179,7 @@
                 </div>
 
                 <!-- 1. TAB LIST -->
-                <div role="tablist" aria-label="Filter featured smartphones by brand">
+                <nav role="tablist" aria-label="Filter featured smartphones by brand">
                     <button role="tab" id="tab-all"
                             aria-controls="panel-all"
                             aria-selected="true"
@@ -199,10 +200,10 @@
                             aria-controls="panel-oneplus"
                             aria-selected="false"
                             tabindex="-1">OnePlus</button>
-                </div>
+                </nav>
 
                 <!-- 2. TAB PANEL: ALL -->
-                <div role="tabpanel" id="panel-all" aria-labelledby="tab-all" tabindex="0">
+                <section role="tabpanel" id="panel-all" aria-labelledby="tab-all" tabindex="0">
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
                         <!-- Product 1: iPhone -->
@@ -301,10 +302,10 @@
                             </div>
                         </article>
                     </div>
-                </div>
+                </section>
 
                 <!-- 3. TAB PANEL: APPLE -->
-                <div role="tabpanel" id="panel-apple" aria-labelledby="tab-apple" tabindex="0" hidden>
+                <section role="tabpanel" id="panel-apple" aria-labelledby="tab-apple" tabindex="0" hidden>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         <article class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition duration-300 border border-gray-100 group">
                             <div class="relative overflow-hidden bg-gray-100">
@@ -329,10 +330,10 @@
                             </div>
                         </article>
                     </div>
-                </div>
+                </section>
 
                 <!-- 4. TAB PANEL: SAMSUNG -->
-                <div role="tabpanel" id="panel-samsung" aria-labelledby="tab-samsung" tabindex="0" hidden>
+                <section role="tabpanel" id="panel-samsung" aria-labelledby="tab-samsung" tabindex="0" hidden>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         <article class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition duration-300 border border-gray-100 group">
                             <div class="relative overflow-hidden bg-gray-100">
@@ -357,10 +358,10 @@
                             </div>
                         </article>
                     </div>
-                </div>
+                </section>
 
                 <!-- 5. TAB PANEL: GOOGLE -->
-                <div role="tabpanel" id="panel-google" aria-labelledby="tab-google" tabindex="0" hidden>
+                <section role="tabpanel" id="panel-google" aria-labelledby="tab-google" tabindex="0" hidden>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         <article class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition duration-300 border border-gray-100 group">
                             <div class="relative overflow-hidden bg-gray-100">
@@ -385,10 +386,10 @@
                             </div>
                         </article>
                     </div>
-                </div>
+                </section>
 
                 <!-- 6. TAB PANEL: ONEPLUS -->
-                <div role="tabpanel" id="panel-oneplus" aria-labelledby="tab-oneplus" tabindex="0" hidden>
+                <section role="tabpanel" id="panel-oneplus" aria-labelledby="tab-oneplus" tabindex="0" hidden>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         <article class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition duration-300 border border-gray-100 group">
                             <div class="relative overflow-hidden bg-gray-100">
@@ -409,4 +410,427 @@
                                 <div class="flex items-center justify-between mb-4">
                                     <div><span class="text-2xl font-bold text-gray-900">$799</span><span class="text-sm text-gray-400 line-through ml-2">$899</span></div>
                                 </div>
-                                <button class="w-full bg-blue-600 text-white py-2.5 rounded-lg font-semib
+                                <button class="w-full bg-blue-600 text-white py-2.5 rounded-lg font-semibold hover:bg-blue-700 transition flex items-center justify-center"><i class="fa-solid fa-cart-plus mr-2" aria-hidden="true"></i>Add to Cart</button>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <section id="api-smartphones" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
+                <div>
+                    <p class="inline-flex items-center rounded-full bg-indigo-100 px-3 py-1 text-sm font-semibold text-indigo-700">Live product feed</p>
+                    <h2 class="mt-4 text-3xl md:text-4xl font-bold text-gray-900">More Smartphones</h2>
+                    <p class="mt-3 text-gray-600 max-w-2xl">Browse smartphone listings loaded live from a public product API.</p>
+                    <p class="mt-2 text-sm text-gray-500">Data provided by <a href="https://dummyjson.com/docs/products" target="_blank" rel="noopener noreferrer" class="text-blue-600 underline hover:text-blue-800">DummyJSON Products API</a>.</p>
+                </div>
+                <button id="refresh-api-products" type="button" class="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                    <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+                    Refresh products
+                </button>
+            </div>
+            <p id="api-products-status" class="mb-6 text-sm text-gray-600" role="status" aria-live="polite">Loading smartphone products...</p>
+            <div id="api-products-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+        </div>
+    </section>
+
+    <section id="crud-app" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <p class="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-sm font-semibold text-blue-700">Inventory Dashboard</p>
+                <h2 class="mt-4 text-3xl md:text-4xl font-bold text-gray-900">Manage Mobile Records</h2>
+                <p class="mt-4 text-gray-600 max-w-2xl mx-auto">Create, edit, delete and search your mobile inventory. Changes are saved locally in your browser.</p>
+            </div>
+
+            <div class="grid gap-8 lg:grid-cols-[1fr_2fr]">
+                <div class="bg-white rounded-3xl shadow-md border border-gray-100 p-6">
+                    <h3 id="form-title" class="text-2xl font-bold text-gray-900 mb-6">Add New Record</h3>
+                    <form id="record-form" class="space-y-4">
+                        <div>
+                            <label for="record-name" class="block text-sm font-medium text-gray-700 mb-2">Device Name</label>
+                            <input id="record-name" name="name" type="text" placeholder="e.g. iPhone 15 Pro" class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+                        </div>
+
+                        <div>
+                            <label for="record-title" class="block text-sm font-medium text-gray-700 mb-2">Title</label>
+                            <input id="record-title" name="title" type="text" placeholder="e.g. Premium flagship" class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+                        </div>
+
+                        <div>
+                            <label for="record-category" class="block text-sm font-medium text-gray-700 mb-2">Category</label>
+                            <select id="record-category" name="category" class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+                                <option value="">Select category</option>
+                                <option value="Apple">Apple</option>
+                                <option value="Samsung">Samsung</option>
+                                <option value="Google">Google</option>
+                                <option value="OnePlus">OnePlus</option>
+                                <option value="Accessories">Accessories</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="record-price" class="block text-sm font-medium text-gray-700 mb-2">Price ($)</label>
+                            <input id="record-price" name="price" type="number" min="0" step="0.01" placeholder="999" class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+                        </div>
+
+                        <div>
+                            <label for="record-description" class="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                            <textarea id="record-description" name="description" rows="4" placeholder="Describe the device" class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" required></textarea>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <button type="submit" class="flex-1 bg-blue-600 text-white py-3 px-4 rounded-xl font-semibold hover:bg-blue-700 transition">Save Record</button>
+                            <button type="button" id="cancel-edit" class="hidden flex-1 bg-gray-200 text-gray-700 py-3 px-4 rounded-xl font-semibold hover:bg-gray-300 transition">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="bg-white rounded-3xl shadow-md border border-gray-100 p-6">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+                        <h3 class="text-2xl font-bold text-gray-900">Records List</h3>
+                        <div class="relative w-full md:max-w-sm">
+                            <input id="search-input" type="search" placeholder="Search by name, title or category" class="w-full border border-gray-200 rounded-xl px-4 py-3 pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <i class="fa-solid fa-magnifying-glass absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                        </div>
+                    </div>
+
+                    <div id="records-count" class="mb-4 text-sm font-medium text-gray-500">0 records</div>
+                    <div id="records-container" class="space-y-4"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 py-8 text-center text-sm text-gray-300">
+            © 2026 MobiTech. Premium smartphones for every lifestyle.
+        </div>
+    </footer>
+
+    <script>
+        const MOBILE_MENU_BUTTON = document.getElementById('mobile-menu-btn');
+        const MOBILE_MENU = document.getElementById('mobile-menu');
+
+        if (MOBILE_MENU_BUTTON && MOBILE_MENU) {
+            MOBILE_MENU_BUTTON.addEventListener('click', function () {
+                const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', String(!isExpanded));
+                MOBILE_MENU.classList.toggle('hidden');
+            });
+        }
+
+        const tabButtons = document.querySelectorAll('[role="tab"]');
+        const tabPanels = document.querySelectorAll('[role="tabpanel"]');
+
+        tabButtons.forEach((tab) => {
+            tab.addEventListener('click', () => {
+                const targetId = tab.getAttribute('aria-controls');
+                tabButtons.forEach((button) => {
+                    const isSelected = button === tab;
+                    button.setAttribute('aria-selected', String(isSelected));
+                    button.setAttribute('tabindex', isSelected ? '0' : '-1');
+                });
+
+                tabPanels.forEach((panel) => {
+                    const shouldShow = panel.id === targetId;
+                    panel.hidden = !shouldShow;
+                });
+            });
+        });
+
+        const apiProductsContainer = document.getElementById('api-products-container');
+        const apiProductsStatus = document.getElementById('api-products-status');
+        const refreshApiProductsButton = document.getElementById('refresh-api-products');
+
+        function createApiProductCard(product) {
+            const card = document.createElement('article');
+            card.className = 'overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition hover:shadow-xl';
+
+            const image = document.createElement('img');
+            image.src = product.thumbnail;
+            image.alt = product.title ? `${product.title} smartphone` : 'Smartphone product';
+            image.loading = 'lazy';
+            image.className = 'h-56 w-full bg-gray-100 object-contain p-4';
+            image.addEventListener('error', () => image.remove());
+
+            const content = document.createElement('div');
+            content.className = 'p-5';
+
+            const brand = document.createElement('p');
+            brand.className = 'mb-2 text-xs font-semibold uppercase tracking-wider text-blue-600';
+            brand.textContent = product.brand || 'Smartphone';
+
+            const title = document.createElement('h3');
+            title.className = 'mb-2 text-lg font-bold text-gray-900';
+            title.textContent = product.title || 'Untitled product';
+
+            const description = document.createElement('p');
+            description.className = 'mb-4 text-sm text-gray-600';
+            description.textContent = product.description || 'No description available.';
+
+            const details = document.createElement('div');
+            details.className = 'flex items-center justify-between border-t border-gray-100 pt-4';
+
+            const price = document.createElement('p');
+            price.className = 'text-xl font-bold text-gray-900';
+            price.textContent = Number.isFinite(Number(product.price))
+                ? `$${Number(product.price).toFixed(2)}`
+                : 'Price unavailable';
+
+            const rating = document.createElement('p');
+            rating.className = 'text-sm font-medium text-amber-600';
+            rating.textContent = Number.isFinite(Number(product.rating))
+                ? `★ ${Number(product.rating).toFixed(1)}`
+                : 'No rating';
+            rating.setAttribute('aria-label', Number.isFinite(Number(product.rating))
+                ? `Rated ${Number(product.rating).toFixed(1)} out of 5`
+                : 'No rating available');
+
+            const stock = document.createElement('p');
+            stock.className = 'mt-3 text-xs text-gray-500';
+            stock.textContent = product.availabilityStatus
+                ? `${product.availabilityStatus} · ${product.stock} in stock`
+                : 'Stock information unavailable';
+
+            details.append(price, rating);
+            content.append(brand, title, description, details, stock);
+            card.append(image, content);
+
+            return card;
+        }
+
+        async function loadApiProducts() {
+            refreshApiProductsButton.disabled = true;
+            refreshApiProductsButton.classList.add('cursor-wait', 'opacity-70');
+            apiProductsStatus.textContent = 'Loading smartphone products...';
+            apiProductsContainer.replaceChildren();
+
+            try {
+                const response = await axios.get('https://dummyjson.com/products/category/smartphones?limit=8');
+                const products = response.data && response.data.products;
+
+                if (!Array.isArray(products)) {
+                    throw new Error('The products API returned an unexpected response.');
+                }
+
+                if (products.length === 0) {
+                    apiProductsStatus.textContent = 'No smartphone products are available right now.';
+                    return;
+                }
+
+                products.forEach((product) => {
+                    apiProductsContainer.append(createApiProductCard(product));
+                });
+                apiProductsStatus.textContent = `Showing ${products.length} products loaded from DummyJSON.`;
+            } catch (error) {
+                console.error('Unable to load smartphone products from DummyJSON:', error);
+                apiProductsStatus.textContent = 'Could not load smartphone products. Check your internet connection and try again.';
+            } finally {
+                refreshApiProductsButton.disabled = false;
+                refreshApiProductsButton.classList.remove('cursor-wait', 'opacity-70');
+            }
+        }
+
+        refreshApiProductsButton.addEventListener('click', loadApiProducts);
+        loadApiProducts();
+
+        const STORAGE_KEY = 'mobitech-records';
+        const defaultRecords = [
+            { id: 1, name: 'iPhone 15 Pro Max', title: 'Premium flagship', category: 'Apple', price: 1099, description: 'A17 Pro chip, 256GB titanium finish' },
+            { id: 2, name: 'Galaxy S24 Ultra', title: 'Powerhouse camera', category: 'Samsung', price: 1199, description: 'Snapdragon 8 Gen 3, 512GB storage' },
+            { id: 3, name: 'Pixel 8 Pro', title: 'AI photography', category: 'Google', price: 899, description: 'Tensor G3, 256GB, stunning camera system' },
+            { id: 4, name: 'OnePlus 12', title: 'Speed and value', category: 'OnePlus', price: 799, description: 'Snapdragon 8 Gen 3, 256GB, fast charging' }
+        ];
+
+        const form = document.getElementById('record-form');
+        const formTitle = document.getElementById('form-title');
+        const cancelEditBtn = document.getElementById('cancel-edit');
+        const searchInput = document.getElementById('search-input');
+        const recordsContainer = document.getElementById('records-container');
+        const recordsCount = document.getElementById('records-count');
+
+        let currentEditId = null;
+        let records = [];
+
+        function loadRecords() {
+            try {
+                const storedRecords = JSON.parse(localStorage.getItem(STORAGE_KEY));
+                if (Array.isArray(storedRecords) && storedRecords.length) {
+                    records = storedRecords;
+                } else {
+                    records = [...defaultRecords];
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(records));
+                }
+            } catch (error) {
+                records = [...defaultRecords];
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(records));
+            }
+        }
+
+        function saveRecords() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(records));
+        }
+
+        function resetForm() {
+            form.reset();
+            currentEditId = null;
+            formTitle.textContent = 'Add New Record';
+            cancelEditBtn.classList.add('hidden');
+            const submitButton = form.querySelector('button[type="submit"]');
+            if (submitButton) {
+                submitButton.textContent = 'Save Record';
+            }
+        }
+
+        function getFilteredRecords() {
+            const term = searchInput.value.trim().toLowerCase();
+
+            return records.filter((record) => {
+                const searchableText = `${record.name} ${record.title} ${record.category} ${record.description}`.toLowerCase();
+                return searchableText.includes(term);
+            });
+        }
+
+        function renderRecords() {
+            const filteredRecords = getFilteredRecords();
+
+            recordsCount.textContent = `${filteredRecords.length} of ${records.length} records shown`;
+
+            if (!filteredRecords.length) {
+                recordsContainer.innerHTML = `
+                    <div class="rounded-2xl border border-dashed border-gray-300 bg-gray-50 p-8 text-center">
+                        <p class="text-lg font-semibold text-gray-700">No records found</p>
+                        <p class="text-sm text-gray-500 mt-2">Try a different search term or add a new record.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            recordsContainer.innerHTML = filteredRecords.map((record) => `
+                <article class="rounded-2xl border border-gray-200 bg-gray-50 p-4 shadow-sm">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+                        <div>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="inline-flex items-center rounded-full bg-blue-100 px-2.5 py-1 text-xs font-semibold text-blue-700">${record.category}</span>
+                                <span class="text-xs text-gray-500">ID: ${record.id}</span>
+                            </div>
+                            <h4 class="text-xl font-bold text-gray-900">${record.name}</h4>
+                            <p class="text-sm text-gray-600 mt-1">${record.title}</p>
+                            <p class="mt-2 text-sm text-gray-500">${record.description}</p>
+                        </div>
+
+                        <div class="text-left md:text-right">
+                            <p class="text-2xl font-bold text-blue-600">$${Number(record.price).toFixed(2)}</p>
+                            <div class="mt-3 flex flex-wrap gap-2 justify-start md:justify-end">
+                                <button data-action="edit" data-id="${record.id}" class="bg-yellow-500 text-white px-3 py-2 rounded-lg text-sm font-semibold hover:bg-yellow-600 transition">Edit</button>
+                                <button data-action="delete" data-id="${record.id}" class="bg-red-500 text-white px-3 py-2 rounded-lg text-sm font-semibold hover:bg-red-600 transition">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        function fillEditForm(record) {
+            currentEditId = record.id;
+            formTitle.textContent = 'Update Record';
+            cancelEditBtn.classList.remove('hidden');
+            document.getElementById('record-name').value = record.name;
+            document.getElementById('record-title').value = record.title;
+            document.getElementById('record-category').value = record.category;
+            document.getElementById('record-price').value = record.price;
+            document.getElementById('record-description').value = record.description;
+
+            const submitButton = form.querySelector('button[type="submit"]');
+            if (submitButton) {
+                submitButton.textContent = 'Update Record';
+            }
+        }
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const formData = new FormData(form);
+            const values = Object.fromEntries(formData.entries());
+
+            const requiredValues = Object.values(values).map((value) => String(value).trim());
+            const hasEmptyFields = requiredValues.some((value) => value === '');
+            const validValues = requiredValues.every((value) => value !== '');
+
+            if (hasEmptyFields || !validValues) {
+                alert('Please fill in all fields before saving.');
+                return;
+            }
+
+            const duplicateRecordExists = records.some((record) => {
+                return record.name.toLowerCase() === values.name.trim().toLowerCase() && record.id !== currentEditId;
+            });
+
+            if (duplicateRecordExists) {
+                alert('A record with this device name already exists. Please choose another name.');
+                return;
+            }
+
+            const recordData = {
+                id: currentEditId || Date.now(),
+                name: values.name.trim(),
+                title: values.title.trim(),
+                category: values.category.trim(),
+                price: Number(values.price),
+                description: values.description.trim()
+            };
+
+            if (currentEditId) {
+                const index = records.findIndex((record) => record.id === currentEditId);
+                if (index !== -1) {
+                    records[index] = recordData;
+                }
+            } else {
+                records.push(recordData);
+            }
+
+            saveRecords();
+            renderRecords();
+            resetForm();
+        });
+
+        recordsContainer.addEventListener('click', function (event) {
+            const target = event.target.closest('button');
+            if (!target) return;
+
+            const id = Number(target.dataset.id);
+            const action = target.dataset.action;
+            const record = records.find((item) => item.id === id);
+
+            if (!record) return;
+
+            if (action === 'edit') {
+                fillEditForm(record);
+            }
+
+            if (action === 'delete') {
+                const confirmed = window.confirm(`Delete ${record.name}?`);
+                if (!confirmed) return;
+
+                records = records.filter((item) => item.id !== id);
+                saveRecords();
+                renderRecords();
+
+                if (currentEditId === id) {
+                    resetForm();
+                }
+            }
+        });
+
+        searchInput.addEventListener('input', renderRecords);
+        cancelEditBtn.addEventListener('click', resetForm);
+
+        loadRecords();
+        renderRecords();
+    </script>
+</body>
+</html>
